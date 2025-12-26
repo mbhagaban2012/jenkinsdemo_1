@@ -1,17 +1,35 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('checkout code'){
-            steps{
+
+    environment {
+        PYTHON = 'C:\\Program Files\\Python314\\python extract.py'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
                 checkout scm
             }
         }
-        stage('checkout code'){
-            steps{
-                bat "/c/Program Files/Python314/python extract.py"
-            }
 
+        stage('Setup Python') {
+            steps {
+                bat "${env.PYTHON} --version"
+            }
+        }
+
+        stage('Extract') {
+            steps {
+                bat "${env.PYTHON} extract.py"
+            }
         }
     }
-    
+
+    post {
+        always {
+            echo 'Pipeline completed.'
+        }
+    }
 }
+
+
