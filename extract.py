@@ -14,3 +14,10 @@ df = pd.DataFrame(data)
 
 # Display the DataFrame
 print(df)
+
+# Write to gcs file
+
+df.write.format('CSV') \
+.option('path',' dev-cloud-storage-1/temp') \
+.mode('append') \
+.save()
