@@ -20,7 +20,7 @@ pipeline {
 
         }
 
-        stage('Extract') {g
+        stage('Extract') {
             steps {
                 bat '"C:\\Program Files\\Python314\\python.exe" extract.py'
             }
