@@ -17,7 +17,7 @@ print(df)
 
 # Write to gcs file
 
-df.write.format('CSV') \
-.option('path',' dev-cloud-storage-1/temp') \
+df.to_csv("extracted_data.csv", index=False) \
+.option('path','gs://dev-cloud-storage-1/temp') \
 .mode('append') \
 .save()
